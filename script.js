@@ -1,11 +1,11 @@
 
-const list = document.getElementById("list");
+const list = document.getElementById("infi-list");
 
 let count = 1;
 
 // Function to add list items
-function addItems(numberOfItems) {
-  for (let i = 0; i < numberOfItems; i++) {
+function addItems(number) {
+  for (let i = 0; i < number; i++) {
     const li = document.createElement("li");
 
     li.textContent = "Item " + count;
@@ -16,15 +16,16 @@ function addItems(numberOfItems) {
   }
 }
 
-// Add 10 items initially
+// Add 10 items by default
 addItems(10);
 
-// Detect when user reaches the end of the list
+// Add 2 more items when user reaches the bottom
 window.addEventListener("scroll", function() {
-  const scrollPosition = window.innerHeight + window.scrollY;
-  const pageHeight = document.documentElement.scrollHeight;
+  const scrollTop = window.scrollY;
+  const windowHeight = window.innerHeight;
+  const documentHeight = document.documentElement.scrollHeight;
 
-  if (scrollPosition >= pageHeight - 5) {
+  if (scrollTop + windowHeight >= documentHeight) {
     addItems(2);
   }
 });
